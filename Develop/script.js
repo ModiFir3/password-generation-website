@@ -1,48 +1,53 @@
 // Assignment code here
-
+  
 //function
 function generatePassword() {
-
-  var confirmUpper = confirm("Would you like Uppercase letters?");
-  if (confirmUpper === true) {
-    charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    console.log('yes');
-  } else {
-    console.log('no');
-  };
-
-  var confirmLower = confirm("Would you like Lowercase letters?");
-  if (confirmLower) {
-    charSet = "abcdefghijklmnopqrstuvwxyz"
-    console.log('yes');
-  } else {
-    console.log('no');
-  };
-
-  var confirmNum = confirm("Would you like to add numbers?");
-  if (confirmNum) {
-    charSet = "0123456789"
-    console.log('yes');
-  } else {
-    console.log('no');
-  };
-
-  var confirmspecial = confirm("Would you like to add Special Characters?");
-  if (confirmspecial) {
-    charSet = " !\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
-    console.log('yes');
-  } else {
-    console.log('no');
-  };
+  var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var lower = "abcdefghijklmnopqrstuvwxyz";
+  var num = "0123456789";
+  var special = " !\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+  var charSet = "";
+  var returnvalue = "";
 
   var confirmLenght = Number(prompt("How Long would you like your password? (8-128)"));
   if (confirmLenght >= 8 && confirmLenght <= 128) {
     console.log(confirmLenght);
   } else {
     window.alert("Please enter a number with in the recommended number range!");
+    generatePassword();
   };
-};
 
+  //uppercase
+  var confirmUpper = confirm("Would you like Uppercase letters?");
+  if (confirmUpper === true) {
+    charSet = charSet.concat(upper);
+  };
+
+  //lowercase
+  var confirmLower = confirm("Would you like Lowercase letters?");
+  if (confirmLower) {
+    charSet = charSet.concat(lower);
+  };
+
+  //number
+  var confirmNum = confirm("Would you like to add numbers?");
+  if (confirmNum) {
+    charSet = charSet.concat(num);
+  };
+
+  //special
+  var confirmspecial = confirm("Would you like to add Special Characters?");
+  if (confirmspecial) {
+    charSet = charSet.concat(special);
+  };
+  console.log(charSet);
+  //math return value
+  for (var i = 0; i < confirmLenght; i++) {
+  returnvalue += charSet.charAt(Math.floor(Math.random() * confirmLenght));
+  };
+  
+  return returnvalue;
+}
 
 var generateBtn = document.querySelector("#generate");
 
@@ -52,9 +57,7 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", generatePassword);
-
+generateBtn.addEventListener("click", writePassword);
