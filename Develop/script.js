@@ -42,6 +42,11 @@ function generatePassword() {
     charSet = charSet.concat(lower);
   };
 
+  if (charSet.length === 0) {
+    window.alert("Must input at least one criteria!");
+    return generatePassword();
+  }
+
   console.log(charSet);
 
   //math return value
@@ -49,8 +54,10 @@ function generatePassword() {
     var random = Math.floor(Math.random() * charSet.length);
     var result = charSet[random];
     var passResults = passResults.concat(result);
+    console.log(random);
+    console.log(result);
   };
-  
+
   return passResults
 }
 
